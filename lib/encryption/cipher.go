@@ -1,10 +1,14 @@
 package encryption
 
+import (
+	"github.com/xiangrui2019/securefshadow/lib/password"
+)
+
 type Cipher struct {
 	// 编码用的密码
-	encodePassword *password
+	encodePassword *password.Password
 	// 解码用的密码
-	decodePassword *password
+	decodePassword *password.Password
 }
 
 // 加密原数据
@@ -22,8 +26,8 @@ func (cipher *Cipher) Decode(bs []byte) {
 }
 
 // 新建一个编码解码器
-func NewCipher(encodePassword *password) *Cipher {
-	decodePassword := &password{}
+func NewCipher(encodePassword *password.Password) *Cipher {
+	decodePassword := &password.Password{}
 	for i, v := range encodePassword {
 		encodePassword[i] = v
 		decodePassword[v] = byte(i)
