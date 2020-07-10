@@ -24,7 +24,6 @@ func main() {
 		ListenAddr: fmt.Sprintf(":%d", port),
 		Password:   password.RandPassword(),
 	}
-
 	config.ReadConfig()
 	config.SaveConfig()
 
@@ -34,9 +33,9 @@ func main() {
 	}
 
 	log.Fatal(server.Listen(func(listenAddr *net.TCPAddr) {
-		log.Println(fmt.Sprintf("SecureFShadow 服务器启动成功, 地址: %d, 密码: %d", config.ListenAddr, config.Password))
+		log.Println(fmt.Sprintf("SecureFShadow 服务器启动成功, 地址: %s, 密码: %s", config.ListenAddr, config.Password))
 		log.Println("您的配置文件")
 		config_s, _ := json.Marshal(config)
-		log.Println(config_s)
+		log.Println(string(config_s))
 	}))
 }

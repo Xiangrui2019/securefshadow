@@ -26,6 +26,6 @@ func main() {
 		log.Println("SecureFShadow 本地Socks5端启动成功.")
 		log.Println("您的配置文件: ")
 		config_s, _ := json.Marshal(config)
-		log.Println(config_s)
+		log.Println(string(config_s))
 	}))
 }
