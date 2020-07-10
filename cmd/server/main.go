@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net"
@@ -33,11 +34,9 @@ func main() {
 	}
 
 	log.Fatal(server.Listen(func(listenAddr *net.TCPAddr) {
-		log.Println(fmt.Sprintf(`
-SecureFShadow服务器 启动成功, 配置文件如下:
-服务监听地址:
-%s
-密码
-%s`, listenAddr, config.Password))
+		log.Println(fmt.Sprintf("SecureFShadow 服务器启动成功, 地址: %d, 密码: %d", config.ListenAddr, config.Password))
+		log.Println("您的配置文件")
+		config_s, _ := json.Marshal(config)
+		log.Println(config_s)
 	}))
 }
